@@ -1,23 +1,26 @@
 Pomodoro Arduino
 ================
 
-Reloj pomodoro con un arduino.
+Reloj pomodoro con un Arduino.
 
-Caracteristicas
+Características
 ---------------
 
-* Boton 1/Led azul: Reset
-* Boton 2/Led rojo: Modo 25 minutos
-* Boton 3/Led verde: Modo 5 minutos
+* Vibra y suena al terminar el pomodoro
+* Botón izquierda/Led azul: Reset
+* Botón centro/Led rojo: Modo 25 minutos
+* Botón derecha/Led verde: Modo 5 minutos
 
 Prototipo
 ---------
 
 ![Prototipo](build/PomodoroArduino.jpg "Prototipo V1")
 
-Contacto
---------
+Autor
+-----
 
-* Manuel Rabade
-  ![manuel@rabade.net](mailto:manuel@rabade.net)
-  ![@manuelrabade](http://twitter.com/manuelrabade)
+**Manuel Rábade**
+
+* [rabade.net](http://rabade.net)
+* [manuel@rabade.net](mailto:manuel@rabade.net)
+* [@manuelrabade](http://twitter.com/manuelrabade)
