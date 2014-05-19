@@ -19,8 +19,4 @@ Prototipo
 Autor
 -----
 
-**Manuel Rábade**
-
-* [rabade.net](http://rabade.net)
-* [manuel@rabade.net](mailto:manuel@rabade.net)
-* [@manuelrabade](http://twitter.com/manuelrabade)
+Manuel Rábade ([manuel@rabade.net](mailto:manuel@rabade.net))
