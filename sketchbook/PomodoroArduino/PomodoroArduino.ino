@@ -1,17 +1,14 @@
-#include <Servo.h> 
-
 /* configuracion */
-#define BTN_RESET 2
-#define BTN_UNO   3
-#define BTN_DOS   4
-#define LED_RESET 5
-#define LED_UNO   6
-#define LED_DOS   7 
-#define SERVO     9
+#define BTN_RESET 4
+#define BTN_UNO   7
+#define BTN_DOS   8
+#define LED_RESET 9
+#define LED_UNO   5
+#define LED_DOS   6 
+#define MOTOR    10
 #define ZUMBADOR 11
 
 /* globales */
-Servo aguja; // aguja en el servomotor
 boolean activo; // true = modo 5 o 15 minutos, false = esperando modo
 unsigned long inicio; // inicio del ciclo
 unsigned long tiempo; // tiempo total del ciclo en milisegundos
@@ -26,9 +23,9 @@ void setup() {
   pinMode(BTN_RESET, INPUT_PULLUP);
   pinMode(BTN_UNO, INPUT_PULLUP);
   pinMode(BTN_DOS, INPUT_PULLUP);
-  aguja.attach(SERVO);
-  aguja.write(30); // el servo va de 30 a 120 grados
+  pinMode(MOTOR, OUTPUT);
   pinMode(ZUMBADOR, OUTPUT);
+  digitalWrite(LED_UNO, HIGH);
   reset();
   beep(1);
 }
@@ -45,51 +42,40 @@ void loop() {
     /* modo 25 minutos */
     activo = true;
     debug = 0;
-    digitalWrite(LED_RESET, LOW);
-    digitalWrite(LED_UNO, HIGH);
-    digitalWrite(LED_DOS, LOW);
-    aguja.write(30);
+    analogWrite(LED_RESET, 0);
+    analogWrite(LED_UNO, 255);
+    analogWrite(LED_DOS, 0);
     inicio = millis();
-    tiempo = 1500000; // 25 minutos en milisegundos
+    tiempo = 1500000; // milisegundos
     beep(1);
   }
   if (digitalRead(BTN_DOS) == LOW && !activo) {
     /* modo 5 minutos */
     activo = true;
     debug = 0;
-    digitalWrite(LED_RESET, LOW);
-    digitalWrite(LED_UNO, LOW);
-    digitalWrite(LED_DOS, HIGH);
-    aguja.write(30);
+    analogWrite(LED_RESET, 0);
+    analogWrite(LED_UNO, 0);
+    analogWrite(LED_DOS, 255);
     inicio = millis();
-    tiempo = 300000; // 5 minutos en milisegundos
+    tiempo = 300000; // milisegundos
     beep(1);
   }
   /* si estamos activo */
   if (activo) {
-    /* calculamos viaje de la aguja */
-    unsigned long diferencia = millis() - inicio; // cuantos milisegundos llevamos corriendo
-    float avance = (float) diferencia / (float) tiempo; // % de avance
-    int grados = (avance * 120) + 30; // posicion de la aguaja en grados (de 30 a 120)
-    aguja.write(grados);
     debug++;
     if (debug > 50) {
-      /* solo imprimos el debug cada 50 ciclos de loop() */
+      /* solo imprimos el debug cada 50 ciclos */
       debug = 0;
       Serial.println("--------------------------------------");
       Serial.print("inicio: ");
       Serial.println(inicio);
       Serial.print("tiempo: ");
       Serial.println(tiempo);
-      Serial.print("diferencia: ");
-      Serial.println(diferencia);
-      Serial.print("avance: ");
-      Serial.println(avance, DEC);    
-      Serial.print("grados: ");
-      Serial.println(grados, DEC);
+      Serial.print("millis: ");
+      Serial.println(millis());
     }
-    if (avance > 1) {
-      /* si llegamos al 100% hacemos beep y reset */
+    if (inicio + tiempo <= millis()) {
+      /* beep y reset */
       beep(3);
       reset();
     }
@@ -97,20 +83,23 @@ void loop() {
   delay(100);
 }
 
-/* reinicio de globales, leds y aguja */
+/* reinicio de globales y leds */
 void reset () {
   activo = false;
-  digitalWrite(LED_RESET, HIGH);
-  digitalWrite(LED_UNO, LOW);
-  digitalWrite(LED_DOS, LOW);
-  aguja.write(30);
+  analogWrite(LED_RESET, 63);
+  analogWrite(LED_UNO, 0);
+  analogWrite(LED_DOS, 0);
 }
 
-/* sonido del zumbador */
+/* sonido del zumbador y vibracion del motor*/
 void beep(int j) {
   for (int i = 0; j > i; i++) {
-    tone(ZUMBADOR, 4978, 90);
-    delay(500);
+    analogWrite(MOTOR, 127);
+    tone(ZUMBADOR, 4978);
+    delay(100);
+    noTone(ZUMBADOR);
+    delay(0);    
+    analogWrite(MOTOR, 0);
+    delay(250);
   }
 }
-
