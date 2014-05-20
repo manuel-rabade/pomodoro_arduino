@@ -1,7 +1,17 @@
 Pomodoro Arduino
 ================
 
-Reloj pomodoro con un Arduino.
+[![Licencia de Creative Commons][CC-IMG]][CC-HREF]
+
+La [Técnica Pomodoro](http://pomodorotechnique.com/) es un método para
+la administración del tiempo desarrollado por Francesco Cirillo. La
+técnica usa un reloj para dividir el tiempo dedicado a un trabajo en
+intervalos de 25 minutos (llamados *pomodoros*) separados por
+pausas. El método se basa en la idea de que las pausas frecuentes
+pueden mejorar la agilidad mental.
+
+Este proyecto implementa un reloj pomodoro con un
+[Arduino](http://arduino.cc).
 
 Características
 ---------------
@@ -19,4 +29,13 @@ Prototipo
 Autor
 -----
 
-Manuel Rábade ([manuel@rabade.net](mailto:manuel@rabade.net))
+[Manuel Rábade](http://rabade.net)
+
+Licencia
+--------
+
+Este obra está bajo una [licencia de Creative Commons
+Reconocimiento-CompartirIgual 4.0 Internacional][CC-HREF].
+
+[CC-HREF]: http://creativecommons.org/licenses/by-sa/4.0/
+[CC-IMG]: http://i.creativecommons.org/l/by-sa/4.0/80x15.png
