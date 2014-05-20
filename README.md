@@ -10,7 +10,8 @@ intervalos de 25 minutos (llamados *pomodoros*) separados por
 pausas. El método se basa en la idea de que las pausas frecuentes
 pueden mejorar la agilidad mental.
 
-Este proyecto implementa un reloj pomodoro con un Arduino.
+Este proyecto implementa un reloj pomodoro con un
+[Arduino](http://arduino.cc).
 
 Características
 ---------------
