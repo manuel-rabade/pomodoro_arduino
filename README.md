@@ -24,7 +24,7 @@ Características
 Prototipo
 ---------
 
-![Prototipo](build/PomodoroArduino.jpg "Prototipo V1")
+![Prototipo](hardware/PomodoroArduino_prototype.jpg "Prototipo V1")
 
 Autor
 -----
