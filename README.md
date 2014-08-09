@@ -27,12 +27,12 @@ Prototipo
 Placa de pruebas
 ----------------
 
-![Breadboard](hardware/PomodoroArduino_breadboard.jpg "Breadboard")
+![Breadboard](hardware/PomodoroArduino_breadboard.png "Breadboard")
 
 Esquemático
 -----------
 
-![Esquemático](hardware/PomodoroArduino_schematic.jpg "Esquemático")
+![Esquemático](hardware/PomodoroArduino_schematic.png "Esquemático")
 
 Autor
 -----
